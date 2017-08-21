@@ -33,9 +33,9 @@ var displayArray = [];
 var mainArray = [picOne, picTwo, picThree, picFour, picFive, picSix, picSeven, picEight, picNine, picTen, picEleven, picTwelve, picThirteen, picFourteen, picFifteen, picSixteen, picSeventeen, picEighteen, picNineteen, picTwenty];
 var form = document.getElementsByTagName('form')[0];
 
-var createImg = function(parent, src, imgClass){
+var createImg = function(parent, source, imgClass){
   var element = document.createElement('img');
-  element.setAttribute('src', src);
+  element.setAttribute('src', source);
   element.setAttribute('class', imgClass);
   parent.appendChild(element);
 };
@@ -55,6 +55,7 @@ initialFunction();
 
 var PicCycle = function(event){
   event.preventDefault();
+  // this.clicked += 1;
   var displayPlaceHolder = [];
   for (var x = 0; x < displayArray.length; x++){
     displayPlaceHolder.push(displayArray[x]);
