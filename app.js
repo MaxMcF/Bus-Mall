@@ -49,13 +49,16 @@ var initialFunction = function(){
     createImg(form, displayArray[i].url, 'img');
   };
 };
-console.log(displayArray);
-console.log(mainArray);
+// console.log(displayArray);
+// console.log(mainArray);
 initialFunction();
 
 var PicCycle = function(event){
-  // event.preventDefault();
-  var displayPlaceHolder = displayArray;
+  event.preventDefault();
+  var displayPlaceHolder = [];
+  for (var x = 0; x < displayArray.length; x++){
+    displayPlaceHolder.push(displayArray[x]);
+  }
   displayArray.splice(0,3);
   console.log(displayPlaceHolder);
   for (var i = 0; i < 3; i++){
@@ -67,7 +70,19 @@ var PicCycle = function(event){
     mainArray.splice(rand, 1);
     createImg(form, displayArray[i].url, 'img');
   };
-  mainArray.concat(displayPlaceHolder);
+  mainArray = mainArray.concat(displayPlaceHolder);
+  displayPlaceHolder = [];
+  console.log(mainArray);
+  console.log(displayArray);
+  var picture = document.getElementsByClassName('img');
+  for (var l = 0; l < picture.length; l++){
+    picture[l].addEventListener('click', PicCycle);
+
+  };
 };
-var picture = document.getElementsByClassName('img')[0];
-picture.addEventListener('click', PicCycle);
+
+var picture = document.getElementsByClassName('img');
+for (var l = 0; l < picture.length; l++){
+  picture[l].addEventListener('click', PicCycle);
+
+};
