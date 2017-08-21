@@ -8,7 +8,7 @@ function pics(name, url, shown, clicked){
   this.shown = shown;
   this.clicked = clicked;
 }
-var picOne = new pics('bag', '/assets/bag.jpg', 0, 0);
+var picOne = new pics('bag', 'assets/bag.jpg', 0, 0);
 var picTwo = new pics('banana', 'assets/banana.jpg', 0, 0);
 var picThree = new pics('bathroom', 'assets/bathroom.jpg', 0, 0);
 var picFour = new pics('boots', 'assets/boots.jpg', 0, 0);
@@ -31,7 +31,7 @@ var picTwenty = new pics('wineGlass', 'assets/wine-glass.jpg', 0, 0);
 
 var displayArray = [];
 var mainArray = [picOne, picTwo, picThree, picFour, picFive, picSix, picSeven, picEight, picNine, picTen, picEleven, picTwelve, picThirteen, picFourteen, picFifteen, picSixteen, picSeventeen, picEighteen, picNineteen, picTwenty];
-var body = document.getElementsByTagName('body')[0];
+var form = document.getElementsByTagName('form')[0];
 
 var createImg = function(parent, src, imgClass){
   var element = document.createElement('img');
@@ -46,10 +46,28 @@ var initialFunction = function(){
     var placeholder = mainArray[rand];
     displayArray.push(placeholder);
     mainArray.splice(rand, 1);
-    console.log(body);
-    createImg(body, displayArray[i].url, 'img');
+    createImg(form, displayArray[i].url, 'img');
   };
 };
 console.log(displayArray);
 console.log(mainArray);
 initialFunction();
+
+var PicCycle = function(event){
+  // event.preventDefault();
+  var displayPlaceHolder = displayArray;
+  displayArray.splice(0,3);
+  console.log(displayPlaceHolder);
+  for (var i = 0; i < 3; i++){
+    var oldPic = document.getElementsByClassName('img')[0];
+    form.removeChild(oldPic);
+    var rand = Math.floor(Math.random() * mainArray.length);
+    var placeholder = mainArray[rand];
+    displayArray.push(placeholder);
+    mainArray.splice(rand, 1);
+    createImg(form, displayArray[i].url, 'img');
+  };
+  mainArray.concat(displayPlaceHolder);
+};
+var picture = document.getElementsByClassName('img')[0];
+picture.addEventListener('click', PicCycle);
