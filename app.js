@@ -29,14 +29,17 @@ var picEighteen = new pics('usb', 'assets/usb.gif', 0, 0);
 var picNineteen = new pics('waterCan', 'assets/water-can.jpg', 0, 0);
 var picTwenty = new pics('wineGlass', 'assets/wine-glass.jpg', 0, 0);
 
+var selectionCounter = 0;
 var displayArray = [];
 var mainArray = [picOne, picTwo, picThree, picFour, picFive, picSix, picSeven, picEight, picNine, picTen, picEleven, picTwelve, picThirteen, picFourteen, picFifteen, picSixteen, picSeventeen, picEighteen, picNineteen, picTwenty];
 var form = document.getElementsByTagName('form')[0];
 
-var createImg = function(parent, source, imgClass){
+var createImg = function(parent, source, imgClass, idName){
   var element = document.createElement('img');
   element.setAttribute('src', source);
   element.setAttribute('class', imgClass);
+  element.setAttribute('id', idName);
+  // element.setAttribute('onclick', )
   parent.appendChild(element);
 };
 
@@ -46,15 +49,39 @@ var initialFunction = function(){
     var placeholder = mainArray[rand];
     displayArray.push(placeholder);
     mainArray.splice(rand, 1);
-    createImg(form, displayArray[i].url, 'img');
+    createImg(form, displayArray[i].url, 'img', displayArray[i].name);
   };
 };
 // console.log(displayArray);
 // console.log(mainArray);
 initialFunction();
 
+var displayTotals = function(){
+  var body = document.getElementsByTagName('body')[0];
+  var unList = document.createElement('ul');
+  unList.setAttribute('class', 'unList');
+  body.appendChild(unList);
+  for(var i = 0; i < displayArray.length; i++){
+    var listItem = document.createElement('li');
+    listItem.innerText = 'The ' + displayArray[i].name + ' was displayed ' + displayArray[i].shown + ' times and was chosen ' + displayArray[i].clicked + ' times.';
+    unList.appendChild(listItem);
+  };
+  for(var i = 0; i < mainArray.length; i++){
+    var listItem = document.createElement('li');
+    listItem.innerText = 'The ' + mainArray[i].name + ' was displayed ' + mainArray[i].shown + ' times and was chosen ' + mainArray[i].clicked + ' times.';
+    unList.appendChild(listItem);
+  };
+};
+
 var PicCycle = function(event){
   event.preventDefault();
+  for (var i = 0; i < displayArray.length; i++){
+    if (displayArray[i].name == event.currentTarget.id){
+      displayArray[i].clicked += 1;
+    }
+  }
+  selectionCounter += 1;
+  console.log(selectionCounter);
   // this.clicked += 1;
   var displayPlaceHolder = [];
   for (var x = 0; x < displayArray.length; x++){
@@ -69,21 +96,24 @@ var PicCycle = function(event){
     var placeholder = mainArray[rand];
     displayArray.push(placeholder);
     mainArray.splice(rand, 1);
-    createImg(form, displayArray[i].url, 'img');
+    var img = createImg(form, displayArray[i].url, 'img', displayArray[i].name);
+    displayArray[i].shown += 1;
   };
   mainArray = mainArray.concat(displayPlaceHolder);
   displayPlaceHolder = [];
-  console.log(mainArray);
-  console.log(displayArray);
   var picture = document.getElementsByClassName('img');
   for (var l = 0; l < picture.length; l++){
     picture[l].addEventListener('click', PicCycle);
-
+    if (selectionCounter > 24){
+      picture[l].removeEventListener('click', PicCycle);
+    };
+  };
+  if (selectionCounter > 24){
+    displayTotals();
   };
 };
 
 var picture = document.getElementsByClassName('img');
 for (var l = 0; l < picture.length; l++){
   picture[l].addEventListener('click', PicCycle);
-
 };
