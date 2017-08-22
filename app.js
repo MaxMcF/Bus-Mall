@@ -37,7 +37,6 @@ var createImg = function(parent, source, imgClass, idName){
   element.setAttribute('src', source);
   element.setAttribute('class', imgClass);
   element.setAttribute('id', idName);
-  // element.setAttribute('onclick', )
   parent.appendChild(element);
 };
 
@@ -52,23 +51,38 @@ var initialFunction = function(){
 };
 initialFunction();
 
+function createListItems(array, parent){
+  for(var i = 0; i < array.length; i++){
+    var listItem = document.createElement('li');
+    listItem.innerText = 'The ' + array[i].name + ' was displayed ' + array[i].shown + ' times and was chosen ' + array[i].clicked + ' times.';
+    parent.appendChild(listItem);
+  };
+}
+
 var displayTotals = function(){
-  var body = document.getElementsByTagName('body')[0];
+  var listDiv = document.getElementById('list');
   var unList = document.createElement('ul');
   unList.setAttribute('class', 'unList');
-  body.appendChild(unList);
-  for(var i = 0; i < displayArray.length; i++){
-    var listItem = document.createElement('li');
-    listItem.innerText = 'The ' + displayArray[i].name + ' was displayed ' + displayArray[i].shown + ' times and was chosen ' + displayArray[i].clicked + ' times.';
-    unList.appendChild(listItem);
-  };
-  for(var i = 0; i < mainArray.length; i++){
-    var listItem = document.createElement('li');
-    listItem.innerText = 'The ' + mainArray[i].name + ' was displayed ' + mainArray[i].shown + ' times and was chosen ' + mainArray[i].clicked + ' times.';
-    unList.appendChild(listItem);
-  };
+  listDiv.appendChild(unList);
+  createListItems(displayArray, unList);
+  createListItems(mainArray, unList);
 };
 
+var updateCounter = function(){
+  var tableRow = document.getElementsByTagName('tr')[0];
+  var oldData = document.getElementsByTagName('td')[0];
+  if (selectionCounter < 25){
+    tableRow.removeChild(oldData);
+    var newData = document.createElement('td');
+    newData.innerText = 25 - selectionCounter;
+    tableRow.appendChild(newData);
+  }
+  else {
+    var table = document.getElementsByTagName('table')[0];
+    var counterDiv = document.getElementById('counter');
+    counterDiv.removeChild(table);
+  }
+};
 var PicCycle = function(event){
   event.preventDefault();
   for (var i = 0; i < displayArray.length; i++){
@@ -77,6 +91,7 @@ var PicCycle = function(event){
     }
   }
   selectionCounter += 1;
+  updateCounter();
   var displayPlaceHolder = [];
   for (var x = 0; x < displayArray.length; x++){
     displayPlaceHolder.push(displayArray[x]);

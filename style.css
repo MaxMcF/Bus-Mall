@@ -1,4 +1,45 @@
+body {
+  background-color: lightBlue;
+}
 .img {
   width: 200px;
   height: 200px;
+  margin-left: 20px;
+  border: medium solid black;
+  border-radius: 20%;
+}
+form {
+  position: absolute;
+  left: 12%;
+  top: 40%;
+}
+#list{
+  position: absolute;
+  left: 60%;
+  top: 10%;
+  background-color: white;
+  border: medium solid black;
+  border-radius: 5%;
+}
+ul {
+  list-style: none;
+}
+li {
+  margin-bottom: 2%;
+}
+#counter {
+  position: absolute;
+  left: 30%;
+  top: 35%;
+  width: 300px;
+}
+td {
+  color: white;
+  background-color: black;
+}
+
+h1 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 50px;
+  margin-left: 15%;
 }
