@@ -134,11 +134,11 @@ var backgroundColorArray = [];
 var borderColorArray = [];
 var dataGather = function(){
   for (var i = 0; i < mainArray.length; i++){
-    if(mainArray[i].clicked !== 0){
+    if(mainArray[i].clicked > 1){
       labelsArray.push(mainArray[i].name);
       dataArray.push(mainArray[i].clicked);
-      backgroundColorArray.push('rgba(255, 99, 132, ' + (mainArray[i].clicked / 10) + ')');
-      borderColorArray.push('rgba(255,99,132,1)');
+      backgroundColorArray.push('rgba(' + (mainArray[i].clicked * 25) + ', ' + (i * 15) + ', ' + (i * 35) + ', ' + (mainArray[i].clicked / 10) + ')');
+      borderColorArray.push('rgba(' + (mainArray[i].clicked * 25) + ', ' + (i * 15) + ', ' + (i * 35) + ',1)');
     }
   }
   new Chart(ctx, chartOptions);
@@ -157,6 +157,7 @@ var chartOptions = {
     }]
   },
   options: {
+    maintainAspectRatio: false,
     scales: {
       yAxes: [{
         ticks: {
