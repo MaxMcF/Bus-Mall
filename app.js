@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 function pics(name, url, shown, clicked){
   this.name = name;
   this.url = url;
@@ -52,8 +50,6 @@ var initialFunction = function(){
     createImg(form, displayArray[i].url, 'img', displayArray[i].name);
   };
 };
-// console.log(displayArray);
-// console.log(mainArray);
 initialFunction();
 
 var displayTotals = function(){
@@ -81,14 +77,11 @@ var PicCycle = function(event){
     }
   }
   selectionCounter += 1;
-  console.log(selectionCounter);
-  // this.clicked += 1;
   var displayPlaceHolder = [];
   for (var x = 0; x < displayArray.length; x++){
     displayPlaceHolder.push(displayArray[x]);
   }
   displayArray.splice(0,3);
-  console.log(displayPlaceHolder);
   for (var i = 0; i < 3; i++){
     var oldPic = document.getElementsByClassName('img')[0];
     form.removeChild(oldPic);
