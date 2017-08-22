@@ -51,21 +51,24 @@ var initialFunction = function(){
 };
 initialFunction();
 
-function createListItems(array, parent){
-  for(var i = 0; i < array.length; i++){
-    var listItem = document.createElement('li');
-    listItem.innerText = 'The ' + array[i].name + ' was displayed ' + array[i].shown + ' times and was chosen ' + array[i].clicked + ' times.';
-    parent.appendChild(listItem);
-  };
-}
+// function createListItems(array, parent){
+//   for(var i = 0; i < array.length; i++){
+//     var listItem = document.createElement('li');
+//     listItem.innerText = 'The ' + array[i].name + ' was displayed ' + array[i].shown + ' times and was chosen ' + array[i].clicked + ' times.';
+//     parent.appendChild(listItem);
+//   };
+// }
 
 var displayTotals = function(){
-  var listDiv = document.getElementById('list');
-  var unList = document.createElement('ul');
-  unList.setAttribute('class', 'unList');
-  listDiv.appendChild(unList);
-  createListItems(displayArray, unList);
-  createListItems(mainArray, unList);
+  for (var i = 0; i < displayArray.length; i++){
+    mainArray.unshift(displayArray[i]);
+  }
+  // var listDiv = document.getElementById('list');
+  // var unList = document.createElement('ul');
+  // unList.setAttribute('class', 'unList');
+  // listDiv.appendChild(unList);
+  // createListItems(mainArray, unList);
+  dataGather();
 };
 
 var updateCounter = function(){
@@ -124,4 +127,42 @@ var PicCycle = function(event){
 var picture = document.getElementsByClassName('img');
 for (var l = 0; l < picture.length; l++){
   picture[l].addEventListener('click', PicCycle);
+};
+var labelsArray = [];
+var dataArray = [];
+var backgroundColorArray = [];
+var borderColorArray = [];
+var dataGather = function(){
+  for (var i = 0; i < mainArray.length; i++){
+    if(mainArray[i].clicked !== 0){
+      labelsArray.push(mainArray[i].name);
+      dataArray.push(mainArray[i].clicked);
+      backgroundColorArray.push('rgba(255, 99, 132, ' + (mainArray[i].clicked / 10) + ')');
+      borderColorArray.push('rgba(255,99,132,1)');
+    }
+  }
+  new Chart(ctx, chartOptions);
+};
+var ctx = document.getElementById('myChart').getContext('2d');
+var chartOptions = {
+  type: 'bar',
+  data: {
+    labels: labelsArray,
+    datasets: [{
+      label: '# of Votes',
+      data: dataArray,
+      backgroundColor: backgroundColorArray,
+      borderColor: borderColorArray,
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero:true
+        }
+      }]
+    }
+  }
 };
