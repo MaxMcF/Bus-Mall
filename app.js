@@ -50,24 +50,10 @@ var initialFunction = function(){
   };
 };
 initialFunction();
-
-// function createListItems(array, parent){
-//   for(var i = 0; i < array.length; i++){
-//     var listItem = document.createElement('li');
-//     listItem.innerText = 'The ' + array[i].name + ' was displayed ' + array[i].shown + ' times and was chosen ' + array[i].clicked + ' times.';
-//     parent.appendChild(listItem);
-//   };
-// }
-
 var displayTotals = function(){
   for (var i = 0; i < displayArray.length; i++){
     mainArray.unshift(displayArray[i]);
   }
-  // var listDiv = document.getElementById('list');
-  // var unList = document.createElement('ul');
-  // unList.setAttribute('class', 'unList');
-  // listDiv.appendChild(unList);
-  // createListItems(mainArray, unList);
   dataGather();
 };
 
