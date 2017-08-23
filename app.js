@@ -128,6 +128,7 @@ var dataArray = [];
 var backgroundColorArray = [];
 var borderColorArray = [];
 var dataGather = function(){
+  localStorage.setItem('main', JSON.stringify(mainArray));
   for (var i = 0; i < mainArray.length; i++){
     if(mainArray[i].clicked > 1){
       labelsArray.push(mainArray[i].name);
