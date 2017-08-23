@@ -30,6 +30,7 @@ var picTwenty = new pics('wineGlass', 'assets/wine-glass.jpg', 0, 0);
 var selectionCounter = 0;
 var displayArray = [];
 
+//this pulls down the storage
 if (localStorage.getItem('main')) {
   var mainArray = JSON.parse(localStorage.main);
 } else {
