@@ -29,13 +29,7 @@ var picTwenty = new pics('wineGlass', 'assets/wine-glass.jpg', 0, 0);
 
 var selectionCounter = 0;
 var displayArray = [];
-
-if (localStorage.getItem('main')) {
-  var mainArray = JSON.parse(localStorage.main);
-} else {
-  var mainArray = [picOne, picTwo, picThree, picFour, picFive, picSix, picSeven, picEight, picNine, picTen, picEleven, picTwelve, picThirteen, picFourteen, picFifteen, picSixteen, picSeventeen, picEighteen, picNineteen, picTwenty];
-}
-
+var mainArray = [picOne, picTwo, picThree, picFour, picFive, picSix, picSeven, picEight, picNine, picTen, picEleven, picTwelve, picThirteen, picFourteen, picFifteen, picSixteen, picSeventeen, picEighteen, picNineteen, picTwenty];
 var form = document.getElementsByTagName('form')[0];
 
 var createImg = function(parent, source, imgClass, idName){
@@ -125,9 +119,6 @@ var dataArray = [];
 var backgroundColorArray = [];
 var borderColorArray = [];
 var dataGather = function(){
-  console.log(mainArray);
-  localStorage.setItem('main', JSON.stringify(mainArray));
-  console.log(localStorage.main);
   for (var i = 0; i < mainArray.length; i++){
     if(mainArray[i].clicked > 1){
       labelsArray.push(mainArray[i].name);
