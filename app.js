@@ -30,15 +30,11 @@ var picTwenty = new pics('wineGlass', 'assets/wine-glass.jpg', 0, 0);
 var selectionCounter = 0;
 var displayArray = [];
 
-
-//this pulls down the storage
 if (localStorage.getItem('main')) {
   var mainArray = JSON.parse(localStorage.main);
 } else {
   var mainArray = [picOne, picTwo, picThree, picFour, picFive, picSix, picSeven, picEight, picNine, picTen, picEleven, picTwelve, picThirteen, picFourteen, picFifteen, picSixteen, picSeventeen, picEighteen, picNineteen, picTwenty];
 }
-
-
 var form = document.getElementsByTagName('form')[0];
 
 var createImg = function(parent, source, imgClass, idName){
