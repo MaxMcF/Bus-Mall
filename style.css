@@ -13,20 +13,6 @@ form {
   left: 12%;
   top: 40%;
 }
-#list{
-  position: absolute;
-  left: 60%;
-  top: 10%;
-  background-color: white;
-  border: medium solid black;
-  border-radius: 5%;
-}
-ul {
-  list-style: none;
-}
-li {
-  margin-bottom: 2%;
-}
 #counter {
   position: absolute;
   left: 30%;
@@ -46,5 +32,6 @@ h1 {
 #myChart{
   position: absolute;
   top: 800px;
-  background-color: white;
+  width: 25%;
+  height: 25%;
 }

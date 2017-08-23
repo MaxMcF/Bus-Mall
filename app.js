@@ -157,7 +157,7 @@ var chartOptions = {
     }]
   },
   options: {
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     scales: {
       yAxes: [{
         ticks: {
