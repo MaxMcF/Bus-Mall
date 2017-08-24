@@ -121,6 +121,7 @@ for (var l = 0; l < picture.length; l++){
 };
 var labelsArray = [];
 var dataArray = [];
+var percentArray = [];
 var backgroundColorArray = [];
 var borderColorArray = [];
 var dataGather = function(){
@@ -129,6 +130,7 @@ var dataGather = function(){
     if(mainArray[i].clicked > 1){
       labelsArray.push(mainArray[i].name);
       dataArray.push(mainArray[i].clicked);
+      percentArray.push(mainArray[i].clicked / mainArray[i].shown * 100);
       backgroundColorArray.push('rgba(' + (mainArray[i].clicked * 25) + ', ' + (i * 15) + ', ' + (i * 35) + ', ' + (mainArray[i].clicked / 10) + ')');
       borderColorArray.push('rgba(' + (mainArray[i].clicked * 25) + ', ' + (i * 15) + ', ' + (i * 35) + ',1)');
     }
@@ -143,6 +145,12 @@ var chartOptions = {
     datasets: [{
       label: '# of Votes',
       data: dataArray,
+      backgroundColor: backgroundColorArray,
+      borderColor: borderColorArray,
+      borderWidth: 1
+    },{
+      label: '% of Votes',
+      data: percentArray,
       backgroundColor: backgroundColorArray,
       borderColor: borderColorArray,
       borderWidth: 1
