@@ -1,5 +1,4 @@
 'use strict';
-
 function pics(name, url, shown, clicked){
   this.name = name;
   this.url = url;
