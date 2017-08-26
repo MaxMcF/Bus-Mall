@@ -134,9 +134,14 @@ var dataGather = function(){
       borderColorArray.push('rgba(' + (mainArray[i].clicked * 25) + ', ' + (i * 15) + ', ' + (i * 35) + ',1)');
     }
   }
+  var canvasElm = document.createElement('canvas');
+  canvasElm.setAttribute('id', 'myChart');
+  var body = document.getElementsByTagName('body')[0];
+  body.appendChild(canvasElm);
+  var ctx = document.getElementById('myChart').getContext('2d');
   new Chart(ctx, chartOptions);
 };
-var ctx = document.getElementById('myChart').getContext('2d');
+
 var chartOptions = {
   type: 'bar',
   data: {
